@@ -1,0 +1,16 @@
+{
+    "presets": [
+        // ["transform-runtime", {
+        //     "polyfill": false,
+        //     "regenerator": true
+        //   }],
+        "@babel/preset-env",
+        "@babel/preset-react"
+        // "es2015", "stage-0"
+    ],
+    "plugins": [
+        "@babel/plugin-proposal-class-properties",
+        "jsx-control-statements",
+        // "@babel/plugin-transform-runtime"
+    ]
+}

@@ -1,0 +1,126 @@
+/* .titulo-p-d-flex {
+    font-weight: bold;
+    font-size: 20px;
+    color: black
+
+} */
+
+/* .pergunta-p-col-8 {
+    font-weight: bold;
+    font-size: 15px;
+    font-style: inherit;
+    color: #696969;
+    margin-left: -18rem;
+    margin-top: 60px;
+} */
+
+ .atividade-montar-container {
+    /* width: 100vw; */
+    /* height: 100vh; */
+    /* background: linear-gradient(180deg, #DDDD 0%, rgb(134, 131, 134) 100%); */
+    /* overflow: hidden; */
+    /* padding: 0; */
+    /* margin: 0; */
+    /* display: flex; */
+    margin-left: 10px;
+    margin-top: 20px;
+    /* justify-content: center; */
+    /* align-items: center; */
+  } 
+
+/* .example-container-pergunta {
+    background: white;
+    border-radius: 10px;
+    width: 200px;
+    height: 250px;
+    margin-left: -245px;
+    margin-top: 50px;
+} */
+
+/* .example-container-resposta {
+    background: white;
+    border-radius: 30px;
+    width: 150px;
+    height: 150px;
+    margin-top: 100px;
+    margin-left: 10px;
+} */
+
+/* .p-mb-2-text {
+    font-weight: bold;
+    font-size: 20px;
+    font-style: inherit;
+    color: #696969;
+    width: 90px;
+    height: 70px;
+    padding-left: 10px;
+    margin-top: 100px;
+} */
+
+.skeleton {
+    /* display: flex; */
+    /* margin-left: 10px; */
+    /* margin-top: 5px; */
+}
+
+/* .skeleton1 {
+    display: flex;
+    margin-left: 30px;
+} */
+
+/* .skeleton2 {
+    display: flex;
+    margin-left: 30px;
+} */
+
+/* .skeleton3 {
+    display: flex;
+    margin-left: 30px;
+} */
+
+/* .skeleton4 {
+    display: flex;
+    margin-left: 30px;
+} */
+
+.montion-pergunta {
+    background: white;
+    border-radius: 10px;
+}
+
+.motion-resposta-A {
+    background: white;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+.motion-resposta-B {
+    background: white;
+    border-radius: 10px;
+    /* width: 200px; */
+    /* height: 250px; */
+    margin-top: 50px;
+    /* margin-left: 90px; */
+}
+
+.motion-resposta-C {
+    background: white;
+    border-radius: 10px;
+    /* width: 200px; */
+    /* height: 250px; */
+    margin-left: 70px;
+}
+
+.resposta-txt-A {
+    margin-top: 170px;
+    margin-left: -30px;
+}
+
+.resposta-txt-B {
+    margin-top: 170px;
+    margin-left: -40px;
+}
+
+.resposta-txt-C {
+
+}
