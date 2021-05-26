@@ -7,6 +7,7 @@ import "./index.css";
 import AtividadeJogo from './atividade-jogo/atividade-jogo';
 import AtividadeMontar from './atividade-montar/atividade-montar';
 import MenuBar from "./menu-bar/menu-bar";
+import Example3 from "./teste-animation/teste-animation";
 
 import 'regenerator-runtime/runtime'
 
@@ -15,6 +16,7 @@ ReactDOM.render(
 		<BrowserRouter>
 			<Switch>
 				<Route exact path="/appJs" component={App} />
+				<Route exact path="/teste-animation" component={Example3}/>
 				<Route exact path="/" component={AtividadeJogo} />
 				<Route exact path="/atividade-montar" component={AtividadeMontar}/>
 				<Route exact path="/atividade-montar/:id" component={AtividadeMontar}/>

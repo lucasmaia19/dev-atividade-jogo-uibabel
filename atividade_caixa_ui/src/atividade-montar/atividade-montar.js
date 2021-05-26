@@ -12,8 +12,27 @@ import boopSfx from './../sounds/boop.mp3';
 import dunDunDun from './../sounds/dun-dun-dun.mp3';
 import fanfare from './../sounds/fanfare.mp3';
 
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import MenuBar from '../menu-bar/menu-bar';
+
+const AtividadeCaixaResposta = {
+
+    id: '',
+	respostaTxt: '',
+	respostaUrl: '',
+	respostaImg: '',
+	respostaCorreta: '',
+}
+
+const AtividadeCaixa = {
+
+	id: '',
+	perguntaTitulo: '',
+	perguntaTxt: '',
+	perguntaUrl: '',
+	perguntaImg: '',
+    atividadeCaixaRespostaA: AtividadeCaixaResposta
+}
 
 // export default function AtividadeMontar() {
 const AtividadeMontar = () => {
@@ -31,8 +50,6 @@ const AtividadeMontar = () => {
 
     const [atividadeId, setAtividadeId] = useState(AtividadeCaixa);
     const { id } = useParams();
-
-    // const toast = useRef(null);
 
     useEffect(() => {
 
@@ -103,120 +120,122 @@ const AtividadeMontar = () => {
     }
 
     return (
-        <div className="">
-            <MenuBar/>
+        <div></div>
+        // <div>
+        //     <MenuBar/>
 
-                <If condition = { requestProgress }>
-                    <Skeleton className="skeleton1" width="15rem" height="15rem"></Skeleton>
-                    <Skeleton className="skeleton2" width="10rem" height="10rem"></Skeleton>
-                    <Skeleton className="skeleton3" width="10rem" height="10rem"></Skeleton>
-                    <Skeleton className="skeleton4" width="10rem" height="10rem"></Skeleton>
-                </If>
+        //         <If condition = { requestProgress }>
+        //             <div className="p-grid p-align-center">                        
+        //                 <div className="p-grid p-align-center">
+        //                     <div className="p-field p-col-6 p-sm-6 p-md-6">
+        //                         <Skeleton className="skeleton1" width="15rem" height="15rem"></Skeleton>
+        //                         <Skeleton className="skeleton2" width="10rem" height="10rem"></Skeleton>
+        //                         <Skeleton className="skeleton3" width="10rem" height="10rem"></Skeleton>
+        //                         <Skeleton className="skeleton4" width="10rem" height="10rem"></Skeleton>
+        //                     </div>
+        //                 </div>
+        //             </div>
+        //         </If>
 
-                <If condition = { !requestProgress }>
-                    <div >
+        //         <If condition = { !requestProgress }>
+        //             <div >
 
-                        <div className="">
-                            <div className="" style={{height: '50px'}}>{atividadeId.perguntaTitulo}</div>
-                        </div>
+        //                 <div className="pergunta-titulo">
+        //                     <div className="" style={{height: '50px'}}>{atividadeId.perguntaTitulo}</div>
+        //                 </div>
 
-                        <div className="">
-                            <div className="" >{atividadeId.perguntaTxt}</div>
-                            
-                            <div className="">
-                                <div className="p-col-6 p-col-align-center p-sm-6 p-md-6">
-                                    <motion.button className="montion-pergunta" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                                        <img className="" onClick={playBoopSfx}
-                                            src={`${converteImagemBase64ParaHtml(atividadeId.perguntaImg)}`}
-                                            style={{width: 150, height: 200}}/>
-                                    </motion.button>
-                                </div>
-                            </div>
-                        </div>
+        //                 <div className="">
+        //                     <div className="pergunta-txt" >{atividadeId.perguntaTxt}</div>
 
-                        <div className="p-grid p-align-center">
+        //                     <div className="">
+        //                         <div className="p-col-6 p-col-align-center p-sm-6 p-md-6">
+        //                             <motion.button className="montion-pergunta" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+        //                                 <img className="" onClick={playBoopSfx}
+        //                                     src={`${converteImagemBase64ParaHtml(atividadeId.perguntaImg)}`}
+        //                                     style={{width: 150, height: 200}}/>
+        //                             </motion.button>
+        //                         </div>
+        //                     </div>
+        //                 </div>
 
-                            <div className="p-fluid p-formgrid p-grid">
-                            {/* <div className="p-grid p-dir-col"> */}
-                                <div className="p-field p-col-6 p-sm-6 p-md-6">
-                                {/* <div className="p-col-12 p-sm-12 p-md-6"> */}
-                                    <motion.button className="motion-resposta-A" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                                        <img className="" onClick={somRespostaA}
-                                            src={`${converteImagemBase64ParaHtml(atividadeId.atividadeCaixaRespostaA.respostaImg)}`}  
-                                            style={{width: 100, height: 100}}/>
+        //                 <div className="p-grid p-align-center">
+
+        //                     <div className="p-fluid p-formgrid p-grid">
+        //                     {/* <div className="p-grid p-dir-col"> */}
+        //                         <div className="p-field p-col-6 p-sm-6 p-md-6">
+        //                         {/* <div className="p-col-12 p-sm-12 p-md-6"> */}
+        //                             <motion.button className="motion-resposta-A" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+        //                                 <img className="" onClick={somRespostaA}
+        //                                     src={`${converteImagemBase64ParaHtml(atividadeId.atividadeCaixaRespostaA.respostaImg)}`}  
+        //                                     style={{width: 100, height: 100}}/>
                         
-                                            <If condition = { iconCheckAndTimes }>
-                                                <div>
-                                                    <If condition = { atividadeId.atividadeCaixaRespostaA.respostaCorreta }>
-                                                        <i className="pi pi-check" style={{'fontSize': '2em', 'color': 'green'}}></i>
-                                                    </If>
-                                                    <If condition = { !atividadeId.atividadeCaixaRespostaA.respostaCorreta }>
-                                                        <i className="pi pi-times" style={{'fontSize': '2em', 'color': 'red'}}></i>
-                                                    </If>
-                                                </div>
-                                            </If>
-                                    </motion.button>
-                                </div>
-                                <div className="resposta-txt-A" style={{height: '50px'}}>
-                                    {atividadeId.atividadeCaixaRespostaA.respostaTxt}</div>
-                            </div>
+        //                                     <If condition = { iconCheckAndTimes }>
+        //                                         <div>
+        //                                             <If condition = { atividadeId.atividadeCaixaRespostaA.respostaCorreta }>
+        //                                                 <i className="pi pi-check" style={{'fontSize': '2em', 'color': 'green'}}></i>
+        //                                             </If>
+        //                                             <If condition = { !atividadeId.atividadeCaixaRespostaA.respostaCorreta }>
+        //                                                 <i className="pi pi-times" style={{'fontSize': '2em', 'color': 'red'}}></i>
+        //                                             </If>
+        //                                         </div>
+        //                                     </If>
+        //                                     <div className="resposta-txt-A" style={{height: '50px'}}>
+        //                                         {atividadeId.atividadeCaixaRespostaA.respostaTxt}</div>
+        //                             </motion.button>
+        //                         </div>
+        //                     </div>
                 
 
-                            <div className="p-fluid p-formgrid p-grid">                               
-                                <div className="p-field p-col-6 p-sm-6 p-md-6">
-                                    <motion.button className="motion-resposta-B" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                                        <img className="" onClick={somRespostaB}
-                                            src={`${converteImagemBase64ParaHtml(atividadeId?.atividadeCaixaRespostaB?.respostaImg)}`}
-                                            style={{width: 100, height: 100}}/>
+        //                     <div className="p-fluid p-formgrid p-grid">                               
+        //                         <div className="p-field p-col-6 p-sm-6 p-md-6">
+        //                             <motion.button className="motion-resposta-B" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+        //                                 <img className="" onClick={somRespostaB}
+        //                                     src={`${converteImagemBase64ParaHtml(atividadeId?.atividadeCaixaRespostaB?.respostaImg)}`}
+        //                                     style={{width: 100, height: 100}}/>
 
-                                            <If condition = { iconCheckAndTimes }>
-                                                <div>
-                                                    <If condition = { atividadeId.atividadeCaixaRespostaB.respostaCorreta }>
-                                                        <i className="pi pi-check" style={{'fontSize': '2em', 'color': 'green'}}></i>
-                                                    </If>
-                                                    <If condition = { !atividadeId.atividadeCaixaRespostaB.respostaCorreta }>
-                                                        <i className="pi pi-times" style={{'fontSize': '2em', 'color': 'red'}}></i>
-                                                    </If>
-                                                </div>
-                                            </If>
-                                    </motion.button>
-                                </div>
-                            <div className="resposta-txt-B">
-                                <div className="" style={{height: '50px'}}>
-                                    {atividadeId?.atividadeCaixaRespostaB?.respostaTxt}</div>
-                            </div>
-                            </div>
+        //                                     <If condition = { iconCheckAndTimes }>
+        //                                         <div>
+        //                                             <If condition = { atividadeId.atividadeCaixaRespostaB.respostaCorreta }>
+        //                                                 <i className="pi pi-check" style={{'fontSize': '2em', 'color': 'green'}}></i>
+        //                                             </If>
+        //                                             <If condition = { !atividadeId.atividadeCaixaRespostaB.respostaCorreta }>
+        //                                                 <i className="pi pi-times" style={{'fontSize': '2em', 'color': 'red'}}></i>
+        //                                             </If>
+        //                                         </div>
+        //                                     </If>
+        //                                     <div className="resposta-txt-B" style={{height: '50px'}}>
+        //                                         {atividadeId?.atividadeCaixaRespostaB?.respostaTxt}</div>
+        //                             </motion.button>
+        //                         </div>
+        //                     </div>
 
 
-                            <div className="p-fluid p-formgrid p-grid">                      
-                                <div className="p-field p-col-12 p-sm-12 p-md-12">
-                                    <motion.button className="motion-resposta-C" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                                        <img className="" onClick={somRespostaC}
-                                            src={`${converteImagemBase64ParaHtml(atividadeId?.atividadeCaixaRespostaC?.respostaImg)}`}
-                                            style={{width: 100, height: 100}}/>
+        //                     <div className="p-fluid p-formgrid p-grid">                      
+        //                         <div className="p-field p-col-12 p-sm-12 p-md-12">
+        //                             <motion.button className="motion-resposta-C" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+        //                                 <img className="" onClick={somRespostaC}
+        //                                     src={`${converteImagemBase64ParaHtml(atividadeId?.atividadeCaixaRespostaC?.respostaImg)}`}
+        //                                     style={{width: 100, height: 100}}/>
 
-                                            <If condition = { iconCheckAndTimes }>
-                                                <div>
-                                                    <If condition = { atividadeId.atividadeCaixaRespostaC.respostaCorreta }>
-                                                        <i className="pi pi-check" style={{'fontSize': '2em', 'color': 'green'}}></i>
-                                                    </If>
-                                                    <If condition = { !atividadeId.atividadeCaixaRespostaC.respostaCorreta }>
-                                                        <i className="pi pi-times" style={{'fontSize': '2em', 'color': 'red'}}></i>
-                                                    </If>
-                                                </div>
-                                            </If>
-                                    </motion.button>
-                                </div>
-                            </div>
-
-                            <div className="resposta-txt-C">
-                                <div className="" style={{height: '50px'}}>
-                                    {atividadeId?.atividadeCaixaRespostaC?.respostaTxt}</div>
-                            </div>
-                     </div>
-                </div>
-            </If>
-        </div>
+        //                                     <If condition = { iconCheckAndTimes }>
+        //                                         <div>
+        //                                             <If condition = { atividadeId.atividadeCaixaRespostaC.respostaCorreta }>
+        //                                                 <i className="pi pi-check" style={{'fontSize': '2em', 'color': 'green'}}></i>
+        //                                             </If>
+        //                                             <If condition = { !atividadeId.atividadeCaixaRespostaC.respostaCorreta }>
+        //                                                 <i className="pi pi-times" style={{'fontSize': '2em', 'color': 'red'}}></i>
+        //                                             </If>
+        //                                         </div>
+        //                                     </If>
+        //                                     <div className="resposta-txt-C" style={{height: '50px'}}>
+        //                                         {atividadeId?.atividadeCaixaRespostaC?.respostaTxt}</div>
+        //                             </motion.button>
+        //                         </div>
+        //                     </div>
+        //              </div>
+        //         </div>
+        //     </If>
+        // </div>
     ); 
 }
 

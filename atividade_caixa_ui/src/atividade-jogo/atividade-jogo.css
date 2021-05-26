@@ -1,113 +1,98 @@
-.p-fieldset-legend	 {
-    /* height: 5px; */
-    /* font-size: 20px; */
-    /* font-style: #673AB7; */
-    /* color #673AB7:  */
-}
 
-.p-button {
-    /* height: 5px; */
-    /* width: 1px; */
-    /* line-height: 1px */
-}
 
 .data-image {
-    width: 60px;
+		width: 60px;
 }
 
 /* .radion-button {
-    margin-top: 20px;
-    margin-left: -30px;
+		margin-top: 20px;
+		margin-left: -30px;
+} */
+	
+	/* .p-button-rounded {
+		margin-top: 15px;
+		margin-left: -15px;
+		position: absolute;
+	} */
+	
+	/* .button-salvar {
+		max-width: 70px; 
+		max-height: 100px;
+
+		height:30px;
+		margin-top: 40px;
+		margin-left: 35px;
+		line-height: 10px;
+	} */
+
+	.data {
+		margin-top: 60px;
+	}
+	
+	/* .button-resposta {
+		height:30px;
+
+		max-width: 70px;
+		max-height: 200px;
+
+		margin-top: 20px;
+		margin-left: 35px;
+	} */
+
+	.input-resposta {
+		/* max-width: 465px;  */
+		/* max-height: 40px; */
+
+		/* margin-top: 10px; */
+		margin-left: 3px;
+	}
+
+	/* .button-pergunta {
+		max-width: 100px; 
+		max-height: 50px;
+		
+		margin-top: 20px;
+		margin-left: 1px;
+	} */
+
+	/* .input-pergunta {
+		max-width: 468px; 
+		max-height: 90px;
+
+		margin-top: 10px;
+		margin-left: 30px;
+	} */
+
+	/* .h-titulos {
+		max-height: 18px;
+	} */
+
+	/* .input-titulo {
+		max-width: 590px; 
+	} */
+
+.buttons-data {
+	margin-left: 70px;
+}
+
+.button-excluir {
+	margin-left: -40px;
+}
+
+.button-editar {
+	margin-left: 5px;
+}
+
+/* .button-selecionar-imagem {
+	width: 100px; 
+	height: 35px;
 } */
 
+.button-dialog {
+	width: 130px; 
+	height: 35px;
+}
 
-.atividade-jogo-body {
-  /* margin-left: 30px; */
-    /* width: 100vw;
-    height: 120vh;
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center; */
-  }
-  
-  /* .p-button-rounded {
-    margin-top: 15px;
-    margin-left: -15px;
-    position: absolute;
-  } */
-  
-  /* .button-salvar {
-    max-width: 70px; 
-    max-height: 100px;
-
-    height:30px;
-    margin-top: 40px;
-    margin-left: 35px;
-    line-height: 10px;
-  } */
-
-  .data {
-    margin-top: 60px;
-  }
-  
-  /* .button-resposta {
-    height:30px;
-
-    max-width: 70px;
-    max-height: 200px;
-
-    margin-top: 20px;
-    margin-left: 35px;
-  } */
-
-  .input-resposta {
-    /* max-width: 465px;  */
-    /* max-height: 40px; */
-
-    /* margin-top: 10px; */
-    margin-left: 30px;
-  }
-
-  /* .button-pergunta {
-    max-width: 100px; 
-    max-height: 50px;
-    
-    margin-top: 20px;
-    margin-left: 1px;
-  } */
-
-  /* .input-pergunta {
-    max-width: 468px; 
-    max-height: 90px;
-
-    margin-top: 10px;
-    margin-left: 30px;
-  } */
-
-  /* .h-titulos {
-    max-height: 18px;
-  } */
-
-  /* .input-titulo {
-    max-width: 590px; 
-  } */
-
-  .button-excluir {
-    margin-left: -40px;
-  }
-
-  .button-editar {
-    margin-left: 5px;
-  }
-
-  .button-selecionar-imagem {
-    width: 100px; 
-    height: 35px;
-  }
-
-  /* .progressBar {
-    position: absolute;
-  } */
+	/* .progressBar {
+		position: absolute;
+	} */

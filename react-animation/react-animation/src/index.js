@@ -10,9 +10,9 @@ import Example4 from "./Example4";
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <React.StrictMode>
-    <Example />
+    {/* <Example /> */}
     {/* <Example2 /> */}
-    {/* <Example3 /> */}
+    <Example3 />
     {/* <Example4 /> */}
     {/* <App /> */}
   </React.StrictMode>,

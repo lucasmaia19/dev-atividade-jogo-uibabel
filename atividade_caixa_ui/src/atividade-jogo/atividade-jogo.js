@@ -54,34 +54,41 @@ import MenuBar from '../menu-bar/menu-bar';
 
 	const [requestProgress, setRequestProgress] = useState(false);
 	const [progressSpinner, setProgressSpinner] = useState(false);
-
+	
 	const toast = useRef(null);
-
-	useEffect(() => {
-	setRequestProgress(true)
-	axios.get('http://localhost:8001/atividade_caixa').then(response => {
-		console.log('response', response.data);
-		
-		setAtividadeAPI(response.data)
-		setRequestProgress(false)
-
-	});
-	}, []);
-
+	
 	const dataService = new PesquisarImagemService();
 
 	const [atividade, setAtividade] = useState({
-	perguntaTitulo: 'QUAL A PRIMEIRA LETRA?',
-})
-
-function onChange(evento) {
-	const { name, value } = evento.target;
+		perguntaTitulo: 'QUAL A PRIMEIRA LETRA?',
+	})
 	
-	setAtividade({ ...atividade, [name]: value })
-	
-}
+	useEffect(() => {
+		getTodasAtividades();
 
-function onSubmit(evento) {
+	}, []);
+
+	function getTodasAtividades() {
+		setRequestProgress(true)
+		axios.get('http://localhost:8001/atividade_caixa').then(response => {
+			console.log('response', response.data);
+			setAtividadeAPI(response.data)
+			setRequestProgress(false)
+		})
+		.catch((error) => {
+			toast.current.show({severity:'error', summary: 'Listagem Falhou', life: 3000});
+			setProgressSpinner(false)
+		
+		})
+	}
+
+	function onChange(evento) {
+		const { name, value } = evento.target;	
+		setAtividade({ ...atividade, [name]: value })
+	
+	}
+
+	function onSubmit(evento) {
 		setProgressSpinner(true)
 		evento.preventDefault();
 
@@ -105,6 +112,7 @@ function onSubmit(evento) {
 			toast.current.show({severity:'success', summary: 'Cadastro Completo', life: 3000});
 			console.log('Cadastrado com sucesso')
 			setProgressSpinner(false)
+			window.location.reload()
 		})
 		.catch((error) => {
 			toast.current.show({severity:'error', summary: 'Cadastro Falhou', life: 3000});
@@ -120,6 +128,7 @@ function onSubmit(evento) {
 		toast.current.show({severity:'success', summary:' Deletado com Sucesso',
 			detail:'Id: ' + id , life: 3000});
 			console.log("Cadastro com o id", id, "excluido")
+			window.location.reload()
 		});
 	}
 
@@ -301,14 +310,18 @@ function onSubmit(evento) {
 		}
 
 		return (
-			<div>
+			<div className="buttons-data">
 				<Button className="button-excluir" icon="pi pi-trash" onClick={confirm}/>
 				<Button className="button-editar" icon="pi pi-file" onClick={ () => getOneAtividade(atividadeAPI.id)}/>
+				<Button className="button-editar" icon="pi pi-file" onClick={ () => testeAnimation()}/>
 			</div>
 			)
 	}
 
-
+	function testeAnimation() {
+		history.push('teste-animation')
+	}
+	
 	function getOneAtividade(id) {
 		history.push(`/atividade-montar/${id}`)
 		console.log("id", id)
@@ -375,7 +388,7 @@ function onSubmit(evento) {
 	return (	
 		<div>
 			<MenuBar/>
-			<div className="p-grid">
+			<div className="">
 
 				<If condition= { requestProgress }>
 					<ProgressBar mode="indeterminate" className="progressBar"/>
@@ -386,15 +399,16 @@ function onSubmit(evento) {
 						<Toast ref={toast} />
 
 						<div className="">
-							<div className="p-field p-col-12 p-sm-12 p-md-6">
+
+							<div className="h-titulos">
 								<h5>Titulo da Atividade</h5>
+							</div>
 								<div className="p-fluid p-formgrid p-grid">
 									<div className="p-field p-col-12 p-sm-12 p-md-6">
 										<InputText className="input-titulo" id="firstname2" type="text" name="perguntaTitulo"
 											value={atividade.perguntaTitulo} onChange={onChange}/>
 									</div>
 								</div>
-							</div>
 
 							<div className="h-titulos">
 								<h5>Pergunta</h5>
@@ -402,11 +416,11 @@ function onSubmit(evento) {
 							<div className="p-fluid p-formgrid p-grid">
 								<div className="p-field p-col-12 p-sm-12 p-md-6">
 									<Button className="button-pergunta" label="Imagem" icon="pi pi-external-link"
-									onClick={() => onClick('displayBasic')} />
+										onClick={() => onClick('displayBasic')} />
 								</div>
 								<div className="p-field p-col-12 p-sm-12 p-md-6">
 									<InputText className="input-pergunta" type="text" rows="4" 
-									name="perguntaTxt" value={atividade.perguntaTxt} onChange={onChange}>
+										name="perguntaTxt" value={atividade.perguntaTxt} onChange={onChange}>
 									</InputText>
 								</div>
 							</div>
@@ -415,10 +429,9 @@ function onSubmit(evento) {
 								footer={renderFooter('displayBasic')}
 								onHide={() => onHide('displayBasic')}>
 								<InputText value={nome} onChange={(e) => setNome(e.target.value)} />
-								<Button onClick={onFormSubmit} icon="pi pi-check" className="p-ml-2"/>
+								<Button onClick={onFormSubmit} icon="pi pi-search" className="p-ml-2"/>
 								<div className="card">
 									<DataTable value={products.value}>
-										{/* <Column header="URL" field="contentUrl"></Column> */}
 										<Column header="Image" body={imageBodyTemplate}></Column>
 										<Column header="Selecionar" body={buttonSelecionarImage}></Column>
 									</DataTable>
@@ -430,7 +443,7 @@ function onSubmit(evento) {
 							</div>
 							<div className="p-fluid p-formgrid p-grid">
 								<If condition = { respostaACorreta }>
-									<div className="p-field p-col-2 p-sm-3 p-md-1">
+									<div className="p-field p-col-2 p-sm-2 p-md-1">
 									<Button icon="pi pi-check" className="" 
 										style={{width: '100%', height: '100%'}}  name="respostaCorreta"
 										onClick={() => {clickRadioButtonA()}}/>
@@ -438,16 +451,16 @@ function onSubmit(evento) {
 								</If>
 
 								<If condition= { !respostaACorreta }>
-									<div className="p-field p-col-2 p-sm-3 p-md-1">
+									<div className="p-field p-col-2 p-sm-2 p-md-1">
 									<Button icon="pi pi-times" className=""
 										style={{width: '100%', height: '100%'}} name="respostaCorreta"
 										onClick={() => {clickRadioButtonA()}}/>
 									</div>
 								</If>
 
-								<div className="p-field p-col-1 p-sm-1 p-md-1">
-								<Button className="" style={{width: '100%', height: '100%'}} 
-									label="A" onClick={() => onClick2('displayBasic2')} />
+								<div className="p-field p-col-2 p-sm-2 p-md-1">
+									<Button className="button-dialog" style={{width: '100%', height: '100%'}} 
+										label="A" onClick={() => onClick2('displayBasic2')} />
 								</div>
 								<div className="p-field p-col-8 p-sm-8 p-md-4">
 								<InputText className="input-resposta" type="text" name="respostaATxt"
@@ -459,10 +472,9 @@ function onSubmit(evento) {
 								footer={renderFooter2('displayBasic2')}
 								onHide={() => onHide2('displayBasic2')}>
 								<InputText value={nome2} onChange={(e) => setNome2(e.target.value)} />
-								<Button onClick={onFormSubmit2} icon="pi pi-check" className="p-ml-2"/>
+								<Button onClick={onFormSubmit2} icon="pi pi-search" className="p-ml-2"/>
 								<div className="card">
 									<DataTable value={products2.value}>
-										{/* <Column header="URL" field="contentUrl"></Column> */}
 										<Column header="Image" body={imageBodyTemplate2}></Column>
 										<Column header="Selecionar" body={buttonSelecionarImage2}></Column>
 									</DataTable>
@@ -486,13 +498,13 @@ function onSubmit(evento) {
 										</div>
 									</If>
 
-									<div className="p-field p-col-1 p-sm-1 p-md-1">
-									<Button className="" style={{width: '100%', height: '100%'}} 
-										label="B" onClick={() => onClick3('displayBasic3')} />
+									<div className="p-field p-col-2 p-sm-2 p-md-1">
+										<Button className="button-dialog" style={{width: '100%', height: '100%'}} 
+											label="B" onClick={() => onClick3('displayBasic3')} />
 									</div>
 									<div className="p-field p-col-8 p-sm-8 p-md-4">
-									<InputText className="input-resposta" type="text" name="respostaBTxt"
-										value={atividade.respostaBTxt} onChange={onChange}/>
+										<InputText className="input-resposta" type="text" name="respostaBTxt"
+											value={atividade.respostaBTxt} onChange={onChange}/>
 									</div>
 								</div>
 
@@ -500,7 +512,7 @@ function onSubmit(evento) {
 								footer={renderFooter3('displayBasic3')}
 								onHide={() => onHide3('displayBasic3')}>
 								<InputText value={nome3} onChange={(e) => setNome3(e.target.value)} />
-								<Button onClick={onFormSubmit3} icon="pi pi-check" className="p-ml-2"/>
+								<Button onClick={onFormSubmit3} icon="pi pi-search" className="p-ml-2"/>
 								<div className="card">
 									<DataTable value={products3.value}>
 										{/* <Column header="URL" field="contentUrl"></Column> */}
@@ -527,8 +539,8 @@ function onSubmit(evento) {
 									</div>
 								</If>
 
-								<div className="p-field p-col-1 p-sm-1 p-md-1">
-									<Button className="" style={{width: '100%', height: '100%'}} 
+								<div className="p-field p-col-2 p-sm-2 p-md-1">
+									<Button className="button-dialog" style={{width: '100%', height: '100%'}} 
 										label="C" onClick={() => onClick4('displayBasic4')} />
 								</div>
 								<div className="p-field p-col-8 p-sm-8 p-md-4">
@@ -541,10 +553,9 @@ function onSubmit(evento) {
 								footer={renderFooter4('displayBasic4')}
 								onHide={() => onHide4('displayBasic4')}>
 								<InputText value={nome4} onChange={(e) => setNome4(e.target.value)} />
-								<Button onClick={onFormSubmit4} icon="pi pi-check" className="p-ml-2"/>
+								<Button onClick={onFormSubmit4} icon="pi pi-search" className="p-ml-2"/>
 								<div className="card">
 									<DataTable value={products4.value}>
-										{/* <Column header="URL" field="contentUrl"></Column> */}
 										<Column header="Image" body={imageBodyTemplate4}></Column>
 										<Column header="Selecionar" body={buttonSelecionarImage4}></Column>
 									</DataTable>
@@ -569,9 +580,7 @@ function onSubmit(evento) {
 						<div className="data">
 							<DataTable value={atividadeAPI}>
 								<Column field="perguntaTxt" header="Titulo"></Column>
-								<Column  field="name" header="#" body={buttonSelecionarAtividade}>
-								{/* <Column field="name" header="#" icon="pi pi-trash" onClick={buttonSelecionarAtividade}> */}
-								</Column>
+								<Column  field="name" header="#" body={buttonSelecionarAtividade}></Column>
 							</DataTable>
 						</div>
 					</div>
