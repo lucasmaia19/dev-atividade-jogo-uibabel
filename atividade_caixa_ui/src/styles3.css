@@ -10,7 +10,7 @@ body {
 
 
 html,
-body {
+.container-animation {
   min-height: 100vh;
   padding: 0;
   margin: 0;
@@ -20,8 +20,8 @@ body {
   box-sizing: border-box;
 }
 
-body {
-  background: linear-gradient(250deg, #7b2ff7, #f107a3);
+.container-animation {
+  background: linear-gradient(250deg, #272727, #dbd9db);
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;

@@ -312,8 +312,8 @@ import MenuBar from '../menu-bar/menu-bar';
 		return (
 			<div className="buttons-data">
 				<Button className="button-excluir" icon="pi pi-trash" onClick={confirm}/>
-				<Button className="button-editar" icon="pi pi-file" onClick={ () => getOneAtividade(atividadeAPI.id)}/>
-				<Button className="button-editar" icon="pi pi-file" onClick={ () => testeAnimation()}/>
+				<Button className="button-editar" icon="pi pi-file" onClick={ () => getOneAtividade(atividadeAPI)}/>
+				{/* <Button className="button-editar" icon="pi pi-file" onClick={ () => testeAnimation()}/> */}
 			</div>
 			)
 	}
@@ -322,10 +322,15 @@ import MenuBar from '../menu-bar/menu-bar';
 		history.push('teste-animation')
 	}
 	
-	function getOneAtividade(id) {
-		history.push(`/atividade-montar/${id}`)
-		console.log("id", id)
+	function getOneAtividade(atividadeAPI) {
+		history.push('/atividade-montar', atividadeAPI)
+		// history.push(`/atividade-montar/${id}`)
+		// console.log("id", id)
 
+	}
+
+	function listarAtividadesAnimation() {
+		history.push('/atividade-montar', atividadeAPI)
 	}
 
 	function selecionarImagem(rowData, evento) {
@@ -582,6 +587,8 @@ import MenuBar from '../menu-bar/menu-bar';
 								<Column field="perguntaTxt" header="Titulo"></Column>
 								<Column  field="name" header="#" body={buttonSelecionarAtividade}></Column>
 							</DataTable>
+							{/* <Button className="button-salvar" type="submit" label="Salvar" onClick={onSubmit}/> */}
+							<Button className="button-salvar" type="submit" label="Começar" onClick={listarAtividadesAnimation}></Button>
 						</div>
 					</div>
 				</If>

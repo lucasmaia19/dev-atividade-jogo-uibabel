@@ -14,6 +14,7 @@ import fanfare from './../sounds/fanfare.mp3';
 
 import { motion, useAnimation } from 'framer-motion';
 import MenuBar from '../menu-bar/menu-bar';
+import ListagemAnimatiom from '../listagem-animation/listagem-animation';
 
 const AtividadeCaixaResposta = {
 
@@ -35,7 +36,7 @@ const AtividadeCaixa = {
 }
 
 // export default function AtividadeMontar() {
-const AtividadeMontar = () => {
+const AtividadeMontar = (props) => {
 
     const [iconCheckAndTimes, setIconCheckAndTimes] = useState(false);
 
@@ -49,21 +50,40 @@ const AtividadeMontar = () => {
     const [playDunDunDun] = useSound(dunDunDun);
 
     const [atividadeId, setAtividadeId] = useState(AtividadeCaixa);
-    const { id } = useParams();
+    const [atividade, setAtividade] = useState(AtividadeCaixa);
+    // const { atividadeAPI } = useParams();
 
     useEffect(() => {
 
+        // console.log("atividadeAPI", props)
+        // console.log("atividadeAPI", props.location.state)
         setRequestProgress(true);
-        async function loadAtividadeId() {
-            axios.get(`http://localhost:8001/atividade_caixa/${id}`).then(response => {
-                setAtividadeId(response.data)
-                // console.log("atividadeId", atividadeId)
-                setRequestProgress(false);
-            });
-        }
+        // getTodasAtividades();
 
-        loadAtividadeId()
+        // async function loadAtividadeId() {
+        //     axios.get(`http://localhost:8001/atividade_caixa/${id}`).then(response => {
+        //         setAtividadeId(response.data)
+        //         // console.log("atividadeId", atividadeId)
+        //         setRequestProgress(false);
+        //     });
+        // }
+
+        // loadAtividadeId();
     }, []);
+
+    // function getTodasAtividades() {
+	// 	setRequestProgress(true)
+	// 	axios.get('http://localhost:8001/atividade_caixa').then(response => {
+    //         setAtividade(response.data)
+	// 		console.log('atividade', atividade);
+	// 		setRequestProgress(false)
+	// 	})
+	// 	.catch((error) => {
+	// 		toast.current.show({severity:'error', summary: 'Listagem Falhou', life: 3000});
+	// 		setProgressSpinner(false)
+		
+	// 	})
+	// }
 
     function converteImagemBase64ParaHtml(imagem) {
 
@@ -120,7 +140,10 @@ const AtividadeMontar = () => {
     }
 
     return (
-        <div></div>
+        <div>
+            <ListagemAnimatiom props={props}/>
+        </div>
+
         // <div>
         //     <MenuBar/>
 
